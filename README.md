@@ -26,6 +26,7 @@ The following privacy enhancing packages are installed:
 In addition to these tools, I would recommend installing some others.
 - Signal Desktop for an open source messaging procedure which is end to end encrypted.
 - BleachBit for maintenance.
+- VeraCrypt for document and drive encryption.
 
 For the script itself, look at 'PrivacyFocusedLinux.py'.
 
