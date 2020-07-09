@@ -27,6 +27,6 @@ In addition to these tools, I would recommend installing some others.
 - Signal Desktop for an open source messaging procedure which is end to end encrypted.
 - BleachBit for maintenance.
 
-For the script itself, download 'PrivacyFocusedLinux.py'.
+For the script itself, look at 'PrivacyFocusedLinux.py'.
 
 Thanks!
