@@ -13,7 +13,7 @@ def aClean():
 	 
 	 #autocleans and autoremoves files
 	 print("Removing...")
-	 os.system("sudo apt-get -y autoremove")
+	 os.system("sudo apt-get -y autoremove --purge")
 	 time.sleep(1)
 	 
 	 print("\nCleaning...")
@@ -48,6 +48,9 @@ def privInstall():
 	print("""\nUncomplicated Firewall blocks all shady traffic in or out of your computer.""")
 	os.system("sudo apt-get install -y ufw")
 	os.system("sudo ufw enable")
+	print("Disabling incoming and forwarding traffic...")
+	os.system("sudo ufw default deny incoming")
+	os.system("sudo ufw default deny forward")
 	time.sleep(1)
 	
 	#HTOP allows you to moniter the ongoing processes
@@ -84,6 +87,19 @@ def privInstall():
 	print("""\nGTK Hash allows you to check hash fingerprinting of a file.""")
 	os.system("sudo apt-get install -y gtkhash")
 	time.sleep(1)
+	
+	#FireJail enables you to isolate your browser for safe browsing
+	print("\nFirejail allows you to isolate an application, a browser or a file.")
+	os.system("sudo apt-get install -y firejail")
+	time.sleep(1)
+	
+	#AppArmor makes sure that apps do not uneccessary permissions
+	print("\nAppArmor makes sure that applications do not have more permissions than is required of them.")
+	os.system("sudo apt-get install -y apparmor-profiles apparmor-utils")
+	#enabling these profiles
+	time.sleep(1)
+	print("\nEnabling profiles...")
+	os.system("sudo aa-enforce /etc/apparmor.d/*")
 	
 	print("-"*50)
 	
@@ -144,6 +160,30 @@ def deSnap():
 	#automatic updates are also a security risk
 	print("Disabling automatic updates...\n")
 	os.system("sudo apt-get purge -y update-notifier")
+	
+	#many nmap scans have revealed the cups daemon to be a minor threat
+	#it enables you to interface with printers
+	#if you use a printer keeping this feature enabled is recommended
+	print("""\nThe CUPS daemon helps you interface with printers if you use them. Would you like to disable the 'cups-daemon'? (Y/N)""")
+	printer_question = input()
+	printer_question.lower()
+	
+	if printer_question == "yes" or printer_question == "y":
+		os.system("sudo apt-get purge -y cups-daemon")
+	else:
+		print("The 'cups-deamon' will remain untouched.")
+	
+	#denial of service attacks pose a massive threat on 'avahi-daemon'
+	#'avahi-daemon' is only useful if you use apple products
+	#if you use itunes or apple products, keeping this is recommended
+	print("""\nThe AVAHI daemon helps you interface with apple products like 'iTunes'. If you use such features, would you like to disable 'avahi-deamon'?""")
+	apple_question = input()
+	apple_question.lower()
+	
+	if apple_question == "yes" or apple_question == "y":
+		os.system("sudo apt-get purge -y avahi-daemon")
+	else:
+		print("The 'avahi-daemon' will remain untouched.")
 	
 	#ubuntu-dock is not a privacy concern and hence a choice
 	time.sleep(1)
