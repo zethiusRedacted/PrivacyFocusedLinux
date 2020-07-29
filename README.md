@@ -10,6 +10,9 @@ This script performs the following actions:
 - Installs Flatpak instead of Snap.
 - Disables automatic updates which can be a security risk.
 - Users are given a choice to keep or remove the Ubuntu-Dock for a cleaner and a more classic GNOME experience.
+- 'avahi-daemon' and 'cups-daemon' can be removed as they pose a security and a privacy threat. [1]
+- The firewall (UFW) is enabled to disable all incoming and forwarding traffic. [1]
+- AppArmour profiles are installed and enabled so apps do not have more than required permissions. [1]
 
 The following privacy enhancing packages are installed:
 - MAT2 (metadata anonymisation tool) helps you remove metadata from images and documents alike from either a GUI interface or a command-line interface.
@@ -22,6 +25,8 @@ The following privacy enhancing packages are installed:
 - ClamAV and ClamTK (clam antivirus) are anti-virus tools which scan your directories looking for potential harmful processes. ClamTK is a GUI version of it.
 - KeePassXC is an open source, encrypted and offline password manager.
 - GTKHash enables you to check the hash fingerprinting of files.
+- AppArmor profiles and utils for better and more enhanced profiles so apps do not have more than required permissions.[1]
+- Firefail to isolate browsers and applications for a safe browsing environment. [1]
 
 In addition to these tools, I would recommend installing some others.
 - Signal Desktop for an open source messaging procedure which is end to end encrypted.
@@ -31,3 +36,13 @@ In addition to these tools, I would recommend installing some others.
 For the script itself, look at 'PrivacyFocusedLinux.py'.
 
 Thanks!
+
+--------------------------------------------------
+Update: 29th June, 2020 - Update [1]
+
+- [PRIVACY RISK] cups-daemon: CUPS daemon is a service used by applications to interface with printers. This script now gives you a choice to remove CUPS service altogether if you do not use printers. NMAP scans can gather information from CUPS service which pose a minor security threat. So, if you do not use a printer, you can let the script do so. User gets a choice to disable, remove or leave the service untouched.
+- [PRIVACY RISK] avahi-daemon: The daemon registers local IP addresses and static services using mDNS/DNS-SD. A 'denial of service' vulnerability was exposed in this daemon. So, if you do not interact with Apple Products on your computer, this daemon can be completely removed, disabled or can remain untouched.
+- [SECURITY RISK] UFW is now programmed to disable all forwarding traffic too.
+- [PRIVACY AND SECURITY RISK] AppArmor Profiles: App armour now lets you install more profiles so the applications you have installed do not do more than they are supposed to.
+- [PRIVACY UTILITY] Firejail: Firejail is installed so you can isolate applications like your browser for unsafe browsing, etc.
+--------------------------------------------------
