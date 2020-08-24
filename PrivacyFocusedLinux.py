@@ -111,6 +111,15 @@ def privInstall():
 	#starting fail2ban generally and on every start up of the machine
 	os.system("sudo systemctl enable fail2ban")
 	os.system("sudo systemctl start fail2ban")
+	#creating personal jail.local file to harden SSH
+	os.system("sudo touch /etc/fail2ban/jail.local")
+	os.system("""sudo echo "[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 3
+bantime = 3600" > /etc/fail2ban/jail.local""")
 	
 	print("-"*50)
 	
