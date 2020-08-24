@@ -13,6 +13,9 @@ This script performs the following actions:
 - 'avahi-daemon' and 'cups-daemon' can be removed as they pose a security and a privacy threat. [1]
 - The firewall (UFW) is enabled to disable all incoming and forwarding traffic. [1]
 - AppArmour profiles are installed and enabled so apps do not have more than required permissions. [1]
+- UFW is enabled now to prevent SSH spamming by a malicious third party following the linux kernel module malware. [2]
+- Fail2ban is installed to prevent SSH spamming following the linux kernel module malware and a local jail is created to ensure this. [2]
+- User is given a choice to disable kernel modules completely (not recommended if you use virtual box or Nvidia drivers) since the newly found malware comes int he form of an unsigned linux kernel module. [2]
 
 The following privacy enhancing packages are installed:
 - MAT2 (metadata anonymisation tool) helps you remove metadata from images and documents alike from either a GUI interface or a command-line interface.
@@ -27,6 +30,7 @@ The following privacy enhancing packages are installed:
 - GTKHash enables you to check the hash fingerprinting of files.
 - AppArmor profiles and utils for better and more enhanced profiles so apps do not have more than required permissions.[1]
 - Firefail to isolate browsers and applications for a safe browsing environment. [1]
+- Fail2ban to prevent SSH spamming by a malicious third party following the linux malware focusing on kernel modules. [2]
 
 In addition to these tools, I would recommend installing some others.
 - Signal Desktop for an open source messaging procedure which is end to end encrypted.
@@ -52,5 +56,5 @@ News: A new malware was released for linux kernel modules. This update will ensu
 
 - [Security Risk] fail2ban: fail2ban is installed and is auto-started for the user. Fail2ban prevents hacking by SSH which is the most common types of attacks. A local jail is created for the user focused on SSH hacking.
 - [Security Risk] UFW permissions: UFW permissions are altered to focus on SSH hacking and preventing spamming by an attacker.
-- [Security Risk] Kernel Modules: Since this new malware is in the form of a kernel module, the user is given a choice of disabling them completely if they do not use apps such as virtual box or have no Nividia drivers installed.
+- [Security Risk] Kernel Modules: Since this new malware is in the form of a kernel module, the user is given a choice of disabling them completely if they do not use apps such as virtual box or have no Nvidia drivers installed.
 --------------------------------------------------
