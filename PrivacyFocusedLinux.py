@@ -203,7 +203,7 @@ def deSnap():
 	#denial of service attacks pose a massive threat on 'avahi-daemon'
 	#'avahi-daemon' is only useful if you use apple products
 	#if you use itunes or apple products, keeping this is recommended
-	print("""\nThe AVAHI daemon helps you interface with apple products like 'iTunes'. If you use such features, would you like to disable 'avahi-deamon'?""")
+	print("""\nThe AVAHI daemon helps you interface with apple products like 'iTunes'. If you use such features, would you like to disable 'avahi-deamon'? (Y/N)""")
 	apple_question = input()
 	apple_question.lower()
 	
