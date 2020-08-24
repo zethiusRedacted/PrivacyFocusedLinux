@@ -46,3 +46,11 @@ Update: 29th June, 2020 - Update [1]
 - [PRIVACY AND SECURITY RISK] AppArmor Profiles: App armour now lets you install more profiles so the applications you have installed do not do more than they are supposed to.
 - [PRIVACY UTILITY] Firejail: Firejail is installed so you can isolate applications like your browser for unsafe browsing, etc.
 --------------------------------------------------
+Update: 25th August, 2020 - Update [2]
+
+News: A new malware was released for linux kernel modules. This update will ensure you do not get affected by it.
+
+- [Security Risk] fail2ban: fail2ban is installed and is auto-started for the user. Fail2ban prevents hacking by SSH which is the most common types of attacks. A local jail is created for the user focused on SSH hacking.
+- [Security Risk] UFW permissions: UFW permissions are altered to focus on SSH hacking and preventing spamming by an attacker.
+- [Security Risk] Kernel Modules: Since this new malware is in the form of a kernel module, the user is given a choice of disabling them completely if they do not use apps such as virtual box or have no Nividia drivers installed.
+--------------------------------------------------
