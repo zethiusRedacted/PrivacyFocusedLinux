@@ -52,6 +52,10 @@ def privInstall():
 	os.system("sudo ufw default deny incoming")
 	os.system("sudo ufw default deny forward")
 	time.sleep(1)
+	#hardening UFW permissions to prevent SSH abuse
+	os.system("sudo ufw limit 22/tcp")
+	os.system("sudo ufw allow 80/tcp")
+	os.system("sudo ufw allow 443/tcp")
 	
 	#HTOP allows you to moniter the ongoing processes
 	print("""\nHTOP allows you to monitor all the ongoing processes on your computer.""")
@@ -100,6 +104,13 @@ def privInstall():
 	time.sleep(1)
 	print("\nEnabling profiles...")
 	os.system("sudo aa-enforce /etc/apparmor.d/*")
+	
+	#Fail2ban makes sure SSH ports are not abused and spammed by malicious parties
+	print("\nFail2ban prevents SSH port abuse by hackers.")
+	os.system("sudo apt-get install -y fail2ban")
+	#starting fail2ban generally and on every start up of the machine
+	os.system("sudo systemctl enable fail2ban")
+	os.system("sudo systemctl start fail2ban")
 	
 	print("-"*50)
 	
@@ -160,6 +171,22 @@ def deSnap():
 	#automatic updates are also a security risk
 	print("Disabling automatic updates...\n")
 	os.system("sudo apt-get purge -y update-notifier")
+	
+	time.sleep(1)
+	#kernel-modules have been targetted by a recent malware
+	#hence the user can disable them altogether
+	#this is not recommended if you use nvidia drivers or virtualbox
+	print("\nKernel Modules have been targetted recently by a malware designed for linux.")
+	print("You can disable these modules completely.")
+	print("Do you use Nvidia drivers or the application 'virtualbox'? (Y/N)")
+	kern_mod = input()
+	kern_mod.lower()
+	
+	if kern_mod == "n":
+		os.system("sudo sysctl kernel.modules_disabled=1")
+		os.system("sudo sysctl net.ipv4.conf.all.rp_filter")
+	else:
+		print("\nKernel Modules will remain untouched.")
 	
 	#many nmap scans have revealed the cups daemon to be a minor threat
 	#it enables you to interface with printers
