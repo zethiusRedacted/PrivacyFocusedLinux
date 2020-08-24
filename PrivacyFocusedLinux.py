@@ -112,7 +112,6 @@ def privInstall():
 	os.system("sudo systemctl enable fail2ban")
 	os.system("sudo systemctl start fail2ban")
 	#creating personal jail.local file to harden SSH
-	os.system("sudo touch /etc/fail2ban/jail.local")
 	os.system("""sudo echo "[sshd]
 enabled = true
 port = ssh
