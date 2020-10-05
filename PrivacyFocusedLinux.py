@@ -159,6 +159,9 @@ def deSnap():
 	print("Disabling and purging reporting packages...\n")
 	time.sleep(1)
 	os.system("sudo apt-get purge -y ubuntu-report popularity-contest apport apport-symptoms whoopsie")
+	print("Holding removed privacy and security risking packages...\n")
+	time.sleep(1)
+	os.system("sudo apt-mark hold avahi-daemon snapd cups-daemon update-notifier gnome-shell-extension-ubuntu-dock gnome-shell-extension-desktop-icons ubuntu-report popularity-contest apport apport-symptoms whoopsie")
 	print("...")
 	print("Done!\n")
 	
