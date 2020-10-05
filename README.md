@@ -16,6 +16,8 @@ This script performs the following actions:
 - UFW is enabled now to prevent SSH spamming by a malicious third party following the linux kernel module malware. [2]
 - Fail2ban is installed to prevent SSH spamming following the linux kernel module malware and a local jail is created to ensure this. [2]
 - User is given a choice to disable kernel modules completely (not recommended if you use virtual box or Nvidia drivers) since the newly found malware comes int he form of an unsigned linux kernel module. [2]
+- 'ubuntu-report', 'popularity-contest', 'apport', 'apport-symptoms' and 'whoopsie' are completely purged for reporting back to Canonical. [3]
+- All the removed packages are now held to maintain privacy and security even after updates (which usually re-install removed packages). [3]
 
 The following privacy enhancing packages are installed:
 - MAT2 (metadata anonymisation tool) helps you remove metadata from images and documents alike from either a GUI interface or a command-line interface.
@@ -57,4 +59,9 @@ News: A new malware was released for linux kernel modules. This update will ensu
 - [Security Risk] fail2ban: fail2ban is installed and is auto-started for the user. Fail2ban prevents hacking by SSH which is the most common types of attacks. A local jail is created for the user focused on SSH hacking.
 - [Security Risk] UFW permissions: UFW permissions are altered to focus on SSH hacking and preventing spamming by an attacker.
 - [Security Risk] Kernel Modules: Since this new malware is in the form of a kernel module, the user is given a choice of disabling them completely if they do not use apps such as virtual box or have no Nvidia drivers installed.
+--------------------------------------------------
+Update: 5th October, 2020 - Update [3]
+
+- [PRIVACY UTILITY] 'ubuntu-report', 'popularity-contest', 'apport', 'apport-symptoms' and 'whoopsie' are now not only disabled but also removed for reporting back to Canonical.
+- [PRIVACY RISK] Since updates tend to re-install all the purged packages. Now, all the purged packages are held to prevent this and maintain privacy and security features.
 --------------------------------------------------
