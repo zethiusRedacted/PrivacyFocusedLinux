@@ -56,6 +56,7 @@ def privInstall():
 	os.system("sudo ufw limit 22/tcp")
 	os.system("sudo ufw allow 80/tcp")
 	os.system("sudo ufw allow 443/tcp")
+	os.system("sudo ufw reload")
 	
 	#HTOP allows you to moniter the ongoing processes
 	print("""\nHTOP allows you to monitor all the ongoing processes on your computer.""")
@@ -151,6 +152,13 @@ def deSnap():
 	print("Disabling Apport...\n")
 	time.sleep(1)
 	os.system("sudo sed -i 's/enabled=1/enabled=0/g' /etc/default/apport")
+	print("...")
+	print("Done!\n")
+	
+	#removing all the reporting packages after the previous step disabled them
+	print("Disabling and purging reporting packages...\n")
+	time.sleep(1)
+	os.system("sudo apt-get purge -y ubuntu-report popularity-contest apport apport-symptoms whoopsie")
 	print("...")
 	print("Done!\n")
 	
