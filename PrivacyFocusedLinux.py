@@ -44,20 +44,6 @@ def privInstall():
 	os.system("sudo apt-get install -y secure-delete")
 	time.sleep(1)
 	
-	#UFW or uncomplicated fire wall
-	print("""\nUncomplicated Firewall blocks all shady traffic in or out of your computer.""")
-	os.system("sudo apt-get install -y ufw")
-	os.system("sudo ufw enable")
-	print("Disabling incoming and forwarding traffic...")
-	os.system("sudo ufw default deny incoming")
-	os.system("sudo ufw default deny forward")
-	time.sleep(1)
-	#hardening UFW permissions to prevent SSH abuse
-	os.system("sudo ufw limit 22/tcp")
-	os.system("sudo ufw allow 80/tcp")
-	os.system("sudo ufw allow 443/tcp")
-	os.system("sudo ufw reload")
-	
 	#HTOP allows you to moniter the ongoing processes
 	print("""\nHTOP allows you to monitor all the ongoing processes on your computer.""")
 	os.system("sudo apt-get install -y htop")
@@ -140,6 +126,20 @@ def classicLin():
 #minmise information about the user reaching canonical
 #purging snap and setting up an alternative i.e., flatpak
 def deSnap():
+	
+	#UFW or uncomplicated fire wall
+	print("""\nUncomplicated Firewall blocks all shady traffic in or out of your computer.""")
+	os.system("sudo apt-get install -y ufw")
+	os.system("sudo ufw enable")
+	print("Disabling incoming and forwarding traffic...")
+	os.system("sudo ufw default deny incoming")
+	os.system("sudo ufw default deny forward")
+	time.sleep(1)
+	#hardening UFW permissions to prevent SSH abuse
+	os.system("sudo ufw limit 22/tcp")
+	os.system("sudo ufw allow 80/tcp")
+	os.system("sudo ufw allow 443/tcp")
+	os.system("sudo ufw reload")
 
 	print("-"*50)
 	print("DESNAPING AND MAKING MORE PRIVATE")
