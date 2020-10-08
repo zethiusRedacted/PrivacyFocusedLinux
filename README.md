@@ -10,6 +10,7 @@ This script performs the following actions:
 - Installs Flatpak instead of Snap.
 - Disables automatic updates which can be a security risk.
 - Users are given a choice to keep or remove the Ubuntu-Dock for a cleaner and a more classic GNOME experience.
+- Hardens network configuration files (/etc/sysctl.conf).
 - 'avahi-daemon' and 'cups-daemon' can be removed as they pose a security and a privacy threat. [1]
 - The firewall (UFW) is enabled to disable all incoming and forwarding traffic. [1]
 - AppArmour profiles are installed and enabled so apps do not have more than required permissions. [1]
