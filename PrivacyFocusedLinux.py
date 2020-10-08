@@ -155,16 +155,6 @@ def deSnap():
 	print("...")
 	print("Done!\n")
 	
-	#removing all the reporting packages after the previous step disabled them
-	print("Disabling and purging reporting packages...\n")
-	time.sleep(1)
-	os.system("sudo apt-get purge -y ubuntu-report popularity-contest apport apport-symptoms whoopsie")
-	print("Holding removed privacy and security risking packages...\n")
-	time.sleep(1)
-	os.system("sudo apt-mark hold avahi-daemon snapd cups-daemon update-notifier gnome-shell-extension-ubuntu-dock gnome-shell-extension-desktop-icons ubuntu-report popularity-contest apport apport-symptoms whoopsie")
-	print("...")
-	print("Done!\n")
-	
 	#most people tend to distrust Snap and hence its removal
 	print("Purging Snap completely...\n")
 	time.sleep(1)
@@ -244,6 +234,30 @@ def deSnap():
 		privInstall()
 	else:
 		classicLin()
+		
+	#removing all the reporting packages after the previous step disabled them
+	print("Disabling and purging reporting packages...\n")
+	time.sleep(1)
+	os.system("sudo apt-get purge -y ubuntu-report popularity-contest apport apport-symptoms whoopsie")
+	print("Holding removed privacy and security risking packages...\n")
+	time.sleep(1)
+	os.system("sudo apt-mark hold avahi-daemon snapd cups-daemon update-notifier gnome-shell-extension-ubuntu-dock gnome-shell-extension-desktop-icons ubuntu-report popularity-contest apport apport-symptoms whoopsie")
+	print("...")
+	print("Done!\n")
+	
+	#hardening network configuration
+	print("Hardening network config files...\n")
+	time.sleep(1)
+	os.system("sudo sed -i 's/#net.ipv4.conf.default.rp_filter=1/net.ipv4.conf.default.rp_filter=1/g' /etc/sysctl.conf")
+	os.system("sudo sed -i 's/#net.ipv4.conf.all.rp_filter=1/net.ipv4.conf.all.rp_filter=1/g' /etc/sysctl.conf")
+	os.system("sudo sed -i 's/#net.ipv4.conf.all.accept_redirects\ \=\ \0/net.ipv4.conf.all.accept_redirects=0/g' /etc/sysctl.conf")
+	os.system("sudo sed -i 's/#net.ipv6.conf.all.accept_redirects\ \=\ \0/net.ipv6.conf.all.accept_redirects=0/g' /etc/sysctl.conf")
+	os.system("sudo sed -i 's/#net.ipv4.conf.all.send_redirects\ \=\ \0/net.ipv4.conf.all.send_redirects=0/g' /etc/sysctl.conf")
+	os.system("sudo sed -i 's/#net.ipv4.conf.all.accept_source_route\ \=\ \0/net.ipv4.conf.all.accept_source_route=0/g' /etc/sysctl.conf")
+	os.system("sudo sed -i 's/#net.ipv6.conf.all.accept_source_route\ \=\ \0/net.ipv6.conf.all.accept_source_route=0/g' /etc/sysctl.conf")
+	os.system("sudo sed -i 's/#net.ipv4.conf.all.log_martians\ \=\ \1/net.ipv4.conf.all.log_martians=1/g' /etc/sysctl.conf")
+	print("...")
+	print("Done!\n")
 	
 	
 	return()
